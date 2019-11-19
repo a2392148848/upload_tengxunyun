@@ -27,8 +27,10 @@ class Vio extends Common{
                 }else{
                     $client = new VodUploadClient(config('secret_id'),config('secret_key'));
                     $req = new VodUploadRequest();
-                    $root=config('root');					//服务器路径,不能使用网址路径
-                    $req->MediaFilePath = $root.'/public/Uploads/'.$name;					//执行任务流
+                    $root=config('root');
+					//服务器路径,不能使用网址路径
+                    $req->MediaFilePath = $root.'/public/Uploads/'.$name;
+					//执行任务流
                     $req->Procedure = "640";
                     try {
                         $rsp = $client->upload("ap-chongqing", $req);
@@ -53,7 +55,7 @@ class Vio extends Common{
                 }
                 unlink('Uploads/'.$name);
                 echo json_encode($arr);
-            }else{
+            }else{
                 // 上传失败获取错误信息
                 echo $file->getError();
             }
